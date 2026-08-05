@@ -6,9 +6,12 @@ from .pdf_assistant_models import PdfAssistantTask
 from pydantic import BaseModel, Field
 from typing import Annotated
 
-Task = Annotated[BrowserTask | DeskTopTask | EmailGenerationTask | PdfAssistantTask, Field(discriminator='module')]
+Task = Annotated[
+    BrowserTask | DeskTopTask | EmailGenerationTask | PdfAssistantTask,
+    Field(discriminator="module"),
+]
 
 
 class TaskRouterResponse(BaseModel):
-  response: str
-  tasks: list[Task]
+    response: str
+    tasks: list[Task]

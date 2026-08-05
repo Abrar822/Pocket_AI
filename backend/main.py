@@ -11,7 +11,7 @@ data = {
     {
       "id": 1,
       "module": "browser",
-      "action": "summarize_website",
+      "action": "open_website",
       "parameters": {
         "url": "https://wikipedia.org"
       } 

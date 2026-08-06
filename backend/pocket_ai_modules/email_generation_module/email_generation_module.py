@@ -23,13 +23,13 @@ Abrar"""
         webbrowser.open("https://mail.google.com/mail/u/0/#inbox?compose=new")
         time.sleep(10)
 
-        pyautogui.press('tab')
+        pyautogui.press("tab")
         pyperclip.copy(subject)
-        pyautogui.hotkey('ctrl', 'v')
+        pyautogui.hotkey("ctrl", "v")
 
-        pyautogui.press('tab')
+        pyautogui.press("tab")
         pyperclip.copy(body)
-        pyautogui.hotkey('ctrl', 'v')
+        pyautogui.hotkey("ctrl", "v")
 
     def execute(self, task):
         match task.action:

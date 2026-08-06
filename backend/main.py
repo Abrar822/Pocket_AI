@@ -10,9 +10,9 @@ data = {
     "tasks": [
         {
             "id": 1,
-            "module": "browser",
-            "action": "open_website",
-            "parameters": {"url": "https://wikipedia.org"},
+            "module": "email",
+            "action": "compose_email",
+            "parameters": {"prompt": "Generate me the email for 7 days leave"},
         }
     ],
 }

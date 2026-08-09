@@ -3,9 +3,6 @@ from .pocket_ai_modules.text_to_speech_module.Piper_TTS import tts
 from .TaskRouter import TaskRouter
 import json
 
-# from fastapi import FastAPI
-# app = FastAPI()
-
 data = {
     "response": "Sir, Opening Github and searching for Abrar822",
     "tasks": [

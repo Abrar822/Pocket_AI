@@ -2,9 +2,12 @@ files/
 
 frontend/node_modules/
 frontend/dist/
+frontend/src-tauri/target
 
 backend/.venv/
 backend/.env
 
 __pycache__/
 *.pyc
+
+*.wav

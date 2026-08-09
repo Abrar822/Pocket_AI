@@ -6,6 +6,7 @@ function App() {
 
   return (
     <>
+    <h1>Hi hello this is a desktop application</h1>
     </>
   )
 }

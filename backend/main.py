@@ -7,14 +7,13 @@ import json
 # app = FastAPI()
 
 data = {
-    "response": "Opening Github and searching for Smit-10",
+    "response": "Sir, Opening Github and searching for Abrar822",
     "tasks": [
         {
             "id": 1,
             "module": "browser",
             "action": "search",
-            "parameters": {"website_name": "github",
-                           "query": "Smit-10"},
+            "parameters": {"website_name": "github", "query": "PaperForge"},
         }
     ],
 }

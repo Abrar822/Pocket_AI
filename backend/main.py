@@ -11,42 +11,36 @@ from .core.llm import route_task
 #     "tasks": [
 #         {
 #             "id": 1,
-#             "module": "desktop",
-#             "action": "set_brightness",
-#             "parameters": {"level": "10"},
+#             "module": "browser",
+#             "action": "search_specific_website",
+#             "parameters": {"website_name": "youtube", "query": "Abrar Shekh"},
 #         }
 #     ],
 # }
 
 app = FastAPI()
+speaker = tts.TextToSpeechModule()
+ai = TaskRouter()
 
 
 # Endpoint to generate the response from llm after receiving the prompt
 # Run Qwen:=> .\backend\core\llama_cpp\llama-server.exe -m ".\backend\core\model\qwen2.5-1.5b-instruct-q4_k_m.gguf" -c 4096
 @app.post('/prompt')
 def generate_response(request: LLMRequestModel):
-    error = ''
-    count = 2
+    try:
+        data = route_task(request.prompt)
+        print('Data returned by llm', data)
 
-    while count > 0:
-        try:
-            data = route_task(request.prompt)
-            data_json = json.dumps(data)
+        data_json = json.dumps(data)
+        print('Data converted to json', data_json)
 
-            data_json = TaskRouterResponse.model_validate_json(data_json)
-            print(data_json)
+        data_json = TaskRouterResponse.model_validate_json(data_json)
+        print(data_json if data_json else print('no returned data'))
 
-            speaker = tts.TextToSpeechModule()
-            speaker.tts(data_json.response)
+        speaker.tts(data_json.response)
 
-            ai = TaskRouter()
-            ai.execute(data_json.tasks)
+        ai.execute(data_json.tasks)
 
-            error = ''
-            break
-        except Exception as err:
-            error += str(err)
-            count -= 1
-            if count == 0:
-                speaker = tts.TextToSpeechModule()
-                speaker.tts('Sorry I cannot help with that')
+    except Exception as err:
+        speaker.tts('Sorry I cannot help with that')
+        print(repr(err))

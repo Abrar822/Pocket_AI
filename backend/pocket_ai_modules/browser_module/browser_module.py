@@ -9,7 +9,7 @@ class BrowserModule:
         self.actions = {
             "open_website": self.open_website,
             "summarize_website": self.summarize_website,
-            "search": self.search_specific_websites,
+            "search_specific_website": self.search_specific_website,
         }
         self.search_engines = {
             "youtube": "https://www.youtube.com/results?search_query={}",
@@ -29,7 +29,7 @@ class BrowserModule:
     def open_website(self, task):
         webbrowser.open(task.parameters.url)
 
-    def search_specific_websites(self, task):
+    def search_specific_website(self, task):
         query = quote(task.parameters.query)
         website_name = task.parameters.website_name
         search_url = self.search_engines[website_name.strip().lower()]
@@ -37,19 +37,20 @@ class BrowserModule:
 
     def summarize_website(self, task):
 
-        url = task.parameters.url
-
-        engine = sync_playwright().start()
-        browser = engine.chromium.launch(headless=False)
-        page = browser.new_page()
-
-        page.goto(url, wait_until="domcontentloaded")
-        page.wait_for_timeout(5000)
-        text = page.locator("body").inner_text()
-
-        browser.close()
-        engine.stop()
-        print(text)
+        try:
+            url = task.parameters.url
+            
+            engine = sync_playwright().start()
+            browser = engine.chromium.launch(headless=False)
+            page = browser.new_page()
+    
+            page.goto(url, wait_until="domcontentloaded")
+            page.wait_for_timeout(5000)
+            text = page.locator("body").inner_text()
+            print(text)
+        finally:
+            browser.close()
+            engine.stop()
 
     def execute(self, task):
         action = self.actions.get(task.action)

@@ -20,10 +20,10 @@ class SearchSpecificWebsiteParams(BaseModel):
     query: str
 
 
-class SearchSpecificWebsites(BaseModel):
+class SearchSpecificWebsite(BaseModel):
     id: int
     module: Literal["browser"]
-    action: Literal["search"]
+    action: Literal["search_specific_website"]
     parameters: SearchSpecificWebsiteParams
 
 
@@ -50,5 +50,5 @@ class SummarizeWebsite(BaseModel):
 
 
 BrowserTask = Annotated[
-    OpenWebsite | SummarizeWebsite | SearchSpecificWebsites, Field(discriminator="action")
+    OpenWebsite | SummarizeWebsite | SearchSpecificWebsite, Field(discriminator="action")
 ]

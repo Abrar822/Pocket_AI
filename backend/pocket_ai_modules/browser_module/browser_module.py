@@ -9,7 +9,7 @@ class BrowserModule:
         self.actions = {
             "open_website": self.open_website,
             "summarize_website": self.summarize_website,
-            "search": self.search,
+            "search": self.search_specific_websites,
         }
         self.search_engines = {
             "youtube": "https://www.youtube.com/results?search_query={}",
@@ -29,7 +29,7 @@ class BrowserModule:
     def open_website(self, task):
         webbrowser.open(task.parameters.url)
 
-    def search(self, task):
+    def search_specific_websites(self, task):
         query = quote(task.parameters.query)
         website_name = task.parameters.website_name
         search_url = self.search_engines[website_name.strip().lower()]

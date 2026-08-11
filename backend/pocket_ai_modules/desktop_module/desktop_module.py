@@ -33,7 +33,15 @@ class DesktopModule:
             "delete_file_folder": self.file.execute,
             "rename_file_folder": self.file.execute,
             "close_file": self.file.execute,
+            "no_task": self.no_task,
+            "conversation": self.conversation
         }
+
+    def no_task(self, task):
+        pass
+
+    def conversation(self, task):
+        pass
 
     def set_volume(self, task):
         level = task.parameters.level

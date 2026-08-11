@@ -1,9 +1,9 @@
-from .pocket_ai_modules.desktop_module.desktop_module import DesktopModule
-from .pocket_ai_modules.browser_module.browser_module import BrowserModule
-from .pocket_ai_modules.email_generation_module.email_generation_module import (
+from ..pocket_ai_modules.desktop_module.desktop_module import DesktopModule
+from ..pocket_ai_modules.browser_module.browser_module import BrowserModule
+from ..pocket_ai_modules.email_generation_module.email_generation_module import (
     EmailGenerationModule,
 )
-from .pocket_ai_modules.pdf_assistant_module.pdf_assistant_module import (
+from ..pocket_ai_modules.pdf_assistant_module.pdf_assistant_module import (
     PdfAssistantModule,
 )
 

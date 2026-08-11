@@ -5,6 +5,17 @@ from typing import Literal, Annotated
 class NoParams(BaseModel):
     pass
 
+class NoTask(BaseModel):
+    id: int
+    module: Literal["desktop"]
+    action: Literal['no_task']
+    parameters: NoParams
+
+class Conversation(BaseModel):
+    id: int
+    module: Literal["desktop"]
+    action: Literal['conversation']
+    parameters: NoParams
 
 class SetVolumeParams(BaseModel):
     level: int
@@ -166,6 +177,8 @@ DeskTopTask = Annotated[
     | OpenFileFolder
     | DeleteFileFolder
     | RenameFileFolder
-    | CloseFile,
+    | CloseFile
+    | Conversation
+    | NoTask,
     Field(discriminator="action"),
 ]

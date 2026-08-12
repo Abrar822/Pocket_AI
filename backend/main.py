@@ -2,7 +2,6 @@ from .pydantic_models.task_router_models import TaskRouterResponse
 from .pydantic_models.llm_models.llm_models import LLMRequestModel
 from .pocket_ai_modules.text_to_speech_module.Piper_TTS import tts
 from .core.TaskRouter import TaskRouter
-import json
 from fastapi import FastAPI
 from .core.llm import route_task
 
@@ -31,15 +30,11 @@ def generate_response(request: LLMRequestModel):
         data = route_task(request.prompt)
         print('Data returned by llm', data)
 
-        data_json = json.dumps(data)
-        print('Data converted to json', data_json)
+        data = TaskRouterResponse.model_validate(data)
 
-        data_json = TaskRouterResponse.model_validate_json(data_json)
-        print(data_json if data_json else print('no returned data'))
+        speaker.tts(data.response)
 
-        speaker.tts(data_json.response)
-
-        ai.execute(data_json.tasks)
+        ai.execute(data.tasks)
 
     except Exception as err:
         speaker.tts('Sorry I cannot help with that')

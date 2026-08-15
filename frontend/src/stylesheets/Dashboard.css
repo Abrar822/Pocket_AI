@@ -1,0 +1,38 @@
+.dashboard {
+  width: 100%;
+  max-width: 100%;
+  color: var(--text-primary);
+}
+
+.wish {
+  position: absolute;
+  top: 20%;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.wish > :first-child {
+  font-size: 40px;
+}
+
+.wish > :nth-child(2) {
+  font-size: 20px;
+}
+
+.username {
+  color: var(--bright-blue);
+}
+
+.dashboard-content {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}

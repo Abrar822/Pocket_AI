@@ -1,0 +1,65 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+#root {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background: #0B0F16;
+}
+
+:root {
+  --dark-border: #ffffff1f;
+  --sidebar-bg: #20232973;
+  --bg-panel: #14161B;
+  --text-primary: #F5F5F7;
+  --text-secondary: #A8A8B3;
+  --message: #202631;
+  --logo-color: #8B7CF6;
+  --purple: #7C3AED;
+  --violet: #8B5CF6;
+  --bright-violet: #A855F7;
+  --magenta: #D946EF;
+  --blue: #3B82F6;
+  --bright-blue: #5B8BFF;
+  --bright-cyan: #4FD8FF;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sidebar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sidebar-bg);
+  border-radius: 10px;
+  border: 2px solid #0C1014;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bright-cyan);
+}
+
+::selection {
+  background: var(--bright-cyan);
+  color: black;
+}

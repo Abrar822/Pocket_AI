@@ -35,13 +35,14 @@
 }
 
 .sidebar div:hover {
-  background: var(--message);
   border-radius: 10px;
-  border: 1px solid var(--dark-border);
+  background: var(--quick-hover);
+  border-color: var(--quick-border-hover);
+  color: var(--text-primary);
 }
 
 .sidebar:hover {
-  width: 260px;
+  width: 230px;
 }
 
 .sidebar-icons {
@@ -52,5 +53,5 @@
 }
 
 .collapsed {
-  width: 260px;
+  width: 230px;
 }

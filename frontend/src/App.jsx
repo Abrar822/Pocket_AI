@@ -12,6 +12,7 @@ import Chatbox from "./components/Chatbox";
 function App() {
 
   const menuBtnRef = useRef(null);
+  const [state, setState] = useState('Listening')   // Idle, Listening, Speaking, Executing
 
   return (
     <>
@@ -19,10 +20,10 @@ function App() {
       <Sidebar menuBtnRef={menuBtnRef} />
       <Chatbox />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard state={state}/>} />
         <Route
           path="/dashboard"
-          element={<Dashboard />}
+          element={<Dashboard state={state}/>}
         />
         <Route path="/memory" element={<Memory />} />
         <Route path="/settings" element={<settings />} />

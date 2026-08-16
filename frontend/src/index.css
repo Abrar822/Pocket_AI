@@ -34,11 +34,12 @@ body {
   --logo-color: #8B7CF6;
   --purple: #7C3AED;
   --violet: #8B5CF6;
-  --bright-violet: #A855F7;
-  --magenta: #D946EF;
   --blue: #3B82F6;
   --bright-blue: #5B8BFF;
   --bright-cyan: #4FD8FF;
+  --quick-hover: #8b5cf614;
+  --quick-border-hover: #8b5cf659;
+  --quick-icon: #8b5cf659;
 }
 
 ::-webkit-scrollbar {

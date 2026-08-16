@@ -8,16 +8,16 @@
   position: absolute;
   top: 80px;
   left: 100px;
-  text-align: center;
+  text-align: left;
   line-height: 1.5;
 }
 
 .wish > :first-child {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .wish > :nth-child(2) {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .username {
@@ -36,4 +36,67 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+}
+
+
+.quick-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: absolute;
+  bottom: 120px;
+  margin-top: 28px;
+  width: 100%;
+}
+
+.quick-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--dark-border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease
+}
+
+.quick-action:hover {
+  background: var(--quick-hover);
+  border-color: var(--quick-border-hover);
+  transform: translateY(-1px);
+}
+
+.quick-action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--quick-icon);
+  font-size: 18px;
+}
+
+.quick-action:hover .quick-action-icon {
+  color: var(--purple);
+}
+
+.state {
+  position: absolute;
+  bottom: 200px;
+  color: var(--text-primary);
+  font-size: 23px;
+}
+
+@media screen and (height <= 850px) { 
+  .quick-actions {
+    bottom: 40px;
+  }
+  .state {
+    bottom: 100px;
+  }
 }

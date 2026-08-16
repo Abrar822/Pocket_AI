@@ -33,7 +33,7 @@
 }
 
 .chat-title {
-  font-size: 18px;
+  font-size: 20px;
   padding-left: 10px;
 }
 
@@ -151,7 +151,7 @@
   width: 35px;
   height: 35px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
 }
 

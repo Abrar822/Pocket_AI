@@ -46,7 +46,36 @@ RULES:
 - Use placeholders only when they are necessary for a complete email, such as "[Name]" or "[Date]".
 
 5. FORMATTING
-- The "body" value may contain newline characters using \n.
+JSON REQUIREMENTS:
+
+The response MUST be valid JSON that can be passed directly to Python's json.loads().
+
+Inside JSON string values, NEVER use literal unescaped newline characters.
+
+If the email body contains a new line, represent it using the two characters:
+\n
+
+For example, this is CORRECT:
+
+{
+  "subject": "Leave Request",
+  "body": "Dear Manager,\n\nI am writing to request leave.\n\nThank you.\n\nRegards,\n[Name]"
+}
+
+This is WRONG:
+
+{
+  "subject": "Leave Request",
+  "body": "Dear Manager,
+
+I am writing to request leave.
+
+Thank you."
+}
+
+The second example is invalid JSON because it contains literal newline characters inside the string.
+
+Return ONLY the JSON object.
 - Ensure all quotation marks inside JSON string values are properly escaped.
 - Return syntactically valid JSON that can be parsed directly by a JSON parser.
 

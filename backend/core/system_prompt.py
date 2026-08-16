@@ -94,11 +94,12 @@ browser.open_website:
     "url": "..."
 }
 
-browser.summarize_website:
+browser.summarize_website: [IMP: Always mention in "response" -> the result file is saved in downloads folder]
 
 {
     "url": "..."
 }
+
 
 desktop.set_volume:
 
@@ -193,7 +194,7 @@ desktop.no_task:
 email.compose_email:
 
 {
-    "prompt": "..."
+    "prompt_to_other_llm_for_email_generation": "..."
 }
 
 

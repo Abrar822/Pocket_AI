@@ -18,4 +18,8 @@ def mail_generator(prompt: str):
         "max_tokens": 2048
     })
     data = response.json()
-    return data['choices'][0]['message']['content']
+    content = data['choices'][0]['message']['content']
+    print("========== EMAIL LLM OUTPUT ==========")
+    print(repr(content))
+    print("======================================")
+    return content

@@ -3,7 +3,7 @@ from typing import Annotated, Literal
 
 
 class ComposeEmailParams(BaseModel):
-    prompt: str
+    prompt_to_other_llm_for_email_generation: str
 
 
 class ComposeEmail(BaseModel):

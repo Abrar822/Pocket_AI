@@ -14,26 +14,26 @@ class EmailGenerationModule:
         email_speaker = TextToSpeechModule()
 
         try:
-            data = mail_generator(task.parameters.prompt)
-            data = json.loads(data)
-    
+            data = mail_generator(task.parameters.prompt_to_other_llm_for_email_generation)
+            data = json.loads(data, strict=False)
+
             data = MailStructure.model_validate(data)
-    
+
             subject = data.subject
             body = data.body
-    
+
             webbrowser.open("https://mail.google.com/mail/u/0/#inbox?compose=new")
             time.sleep(10)
-    
+
             pyautogui.press("tab")
             pyperclip.copy(subject)
             pyautogui.hotkey("ctrl", "v")
-    
+
             pyautogui.press("tab")
             pyperclip.copy(body)
             pyautogui.hotkey("ctrl", "v")
-        except:
-            email_speaker.tts('Sorry, I could not generate the email')
+        except Exception as err:
+            email_speaker.tts("Sorry, I could not generate the email")
 
     def execute(self, task):
         match task.action:

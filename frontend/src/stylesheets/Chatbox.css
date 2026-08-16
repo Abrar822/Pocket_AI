@@ -2,9 +2,9 @@
   display: flex;
   position: absolute;
   right: 0;
-  top: 60px;
+  top: 50px;
   z-index: 2;
-  height: calc(100dvh - 60px);
+  height: calc(100dvh - 50px);
   width: 400px;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;

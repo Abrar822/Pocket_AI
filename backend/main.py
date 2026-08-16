@@ -3,6 +3,7 @@ from .pydantic_models.llm_models.llm_models import LLMRequestModel
 from .pocket_ai_modules.text_to_speech_module.Piper_TTS import tts
 from .core.TaskRouter import TaskRouter
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from .core.llm import route_task
 
 # data = {
@@ -18,6 +19,14 @@ from .core.llm import route_task
 # }
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 speaker = tts.TextToSpeechModule()
 ai = TaskRouter()
 
@@ -36,6 +45,9 @@ def generate_response(request: LLMRequestModel):
 
         ai.execute(data.tasks)
 
+        return {"response": data.response}
+
     except Exception as err:
         speaker.tts("Sorry I cannot help with that")
         print(str(err))
+        return {"response": "Sorry I cannot help with that"}

@@ -7,18 +7,19 @@
   flex-direction: column;
   padding-top: 30px;
   background: var(--sidebar-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--dark-border);
   border-left: none;
   border-top: none;
   color: var(--text-primary);
   height: calc(100dvh - 60px);
-  width: 60px;
+  width: 70px;
   overflow: hidden;
   border-bottom-right-radius: 10px;
   font-size: 18px;
   transition: all 0.15s ease;
+  padding: 10px;
 }
 
 .sidebar div {
@@ -30,10 +31,13 @@
   align-items: center;
   gap: 10px;
   padding: 15px;
+  border: 1px solid transparent;
 }
 
 .sidebar div:hover {
   background: var(--message);
+  border-radius: 10px;
+  border: 1px solid var(--dark-border);
 }
 
 .sidebar:hover {

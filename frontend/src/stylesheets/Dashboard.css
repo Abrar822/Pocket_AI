@@ -6,7 +6,8 @@
 
 .wish {
   position: absolute;
-  top: 20%;
+  top: 80px;
+  left: 100px;
   text-align: center;
   line-height: 1.5;
 }

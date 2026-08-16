@@ -1,4 +1,5 @@
 import "../stylesheets/Chatbox.css";
+import { fastapiConnect } from "../helper/FastapiConnect";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -16,6 +17,7 @@ export default function Chatbox() {
     },
   ]);
   const [prompt, setPrompt] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let draggable = false;
@@ -82,6 +84,15 @@ export default function Chatbox() {
                 {msg.message}
               </div>
             ))}
+            {loading && (
+              <div className="loading bot-message" key={12345}>
+                <div className="typing-loader">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            )}
 
             <div className="chat-input" ref={chatInputRef}>
               <button className="add-btn" title="Add Pdf">
@@ -92,9 +103,9 @@ export default function Chatbox() {
                 placeholder="Ask Pocket AI.."
                 ref={textareaRef}
                 rows={1}
-                onKeyDown={(e) => {
+                onKeyDown={async (e) => {
                   if (e.key == "Enter" && !e.shiftKey) {
-                    if(prompt.trim().length <= 0) return
+                    if (prompt.trim().length <= 0 || loading) return;
                     e.preventDefault();
                     setMessages((prev) => [
                       ...prev,
@@ -102,6 +113,10 @@ export default function Chatbox() {
                     ]);
                     setPrompt("");
                     chatInputRef.current.style.height = `auto`;
+                    setLoading(true);
+                    let response = await fastapiConnect(prompt)
+                    setMessages(prev => [...prev, {type: 'bot-message', message: response.response}])
+                    setLoading(false)
                   }
                 }}
                 onChange={(e) => {
@@ -122,14 +137,19 @@ export default function Chatbox() {
               <button
                 className="send-btn"
                 title="Send Prompt"
-                onClick={() => {
-                  if(prompt.trim().length <= 0) return
+                onClick={async () => {
+                  if (prompt.trim().length <= 0 || loading) return;
                   setMessages((prev) => [
                     ...prev,
                     { type: "user-message", message: prompt.trim() },
                   ]);
                   setPrompt("");
                   chatInputRef.current.style.height = `auto`;
+                  setLoading(true);
+                  let response = await fastapiConnect(prompt)
+                  setMessages(prev => [...prev, {type: 'bot-message', message: response.response}])
+                  setLoading(false)
+                  
                 }}
               >
                 <i className="ti ti-arrow-up"></i>

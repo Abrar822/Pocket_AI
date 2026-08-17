@@ -3,7 +3,7 @@ import { fastapiConnect } from "../helper/FastapiConnect";
 
 import { useEffect, useRef, useState } from "react";
 
-export default function Chatbox() {
+export default function Chatbox({ setState }) {
   const draggerRef = useRef(null);
   const chatboxRef = useRef(null);
   const textareaRef = useRef(null);
@@ -114,9 +114,14 @@ export default function Chatbox() {
                     setPrompt("");
                     chatInputRef.current.style.height = `auto`;
                     setLoading(true);
-                    let response = await fastapiConnect(prompt)
-                    setMessages(prev => [...prev, {type: 'bot-message', message: response.response}])
-                    setLoading(false)
+                    setState('Working on it')
+                    let response = await fastapiConnect(prompt);
+                    setMessages((prev) => [
+                      ...prev,
+                      { type: "bot-message", message: response.response },
+                    ]);
+                    setLoading(false);
+                    setState('Listening')
                   }
                 }}
                 onChange={(e) => {
@@ -144,12 +149,17 @@ export default function Chatbox() {
                     { type: "user-message", message: prompt.trim() },
                   ]);
                   setPrompt("");
+
                   chatInputRef.current.style.height = `auto`;
                   setLoading(true);
-                  let response = await fastapiConnect(prompt)
-                  setMessages(prev => [...prev, {type: 'bot-message', message: response.response}])
-                  setLoading(false)
-                  
+                  setState('Working on it')
+                  let response = await fastapiConnect(prompt);
+                  setMessages((prev) => [
+                    ...prev,
+                    { type: "bot-message", message: response.response },
+                  ]);
+                  setLoading(false);
+                  setState('Listening')
                 }}
               >
                 <i className="ti ti-arrow-up"></i>

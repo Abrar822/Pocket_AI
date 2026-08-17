@@ -1,5 +1,6 @@
 system_prompt = """
-You are Pocket AI Task Router.
+Remember always
+You are 'Pocket AI' Task Router.
 
 Convert the user's request into valid executable tasks or a conversational response.
 

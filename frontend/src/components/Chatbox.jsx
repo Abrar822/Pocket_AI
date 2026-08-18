@@ -114,14 +114,14 @@ export default function Chatbox({ setState }) {
                     setPrompt("");
                     chatInputRef.current.style.height = `auto`;
                     setLoading(true);
-                    setState('Working on it')
+                    setState("Working on it");
                     let response = await fastapiConnect(prompt);
                     setMessages((prev) => [
                       ...prev,
                       { type: "bot-message", message: response.response },
                     ]);
                     setLoading(false);
-                    setState('Listening')
+                    setState("Listening");
                   }
                 }}
                 onChange={(e) => {
@@ -152,14 +152,14 @@ export default function Chatbox({ setState }) {
 
                   chatInputRef.current.style.height = `auto`;
                   setLoading(true);
-                  setState('Working on it')
+                  setState("Working on it");
                   let response = await fastapiConnect(prompt);
                   setMessages((prev) => [
                     ...prev,
                     { type: "bot-message", message: response.response },
                   ]);
                   setLoading(false);
-                  setState('Listening')
+                  setState("Listening");
                 }}
               >
                 <i className="ti ti-arrow-up"></i>

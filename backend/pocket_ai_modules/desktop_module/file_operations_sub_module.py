@@ -11,6 +11,10 @@ class FileOperationsSubModule:
         }
 
     def create_file(self, task):
+        folder_name = task.parameters.foldername
+        file_name = task.parameters.filename
+        content = task.parameters.content
+        
         print("File Created")
 
     def create_folder(self, task):

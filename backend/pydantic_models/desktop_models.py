@@ -5,17 +5,20 @@ from typing import Literal, Annotated
 class NoParams(BaseModel):
     pass
 
+
 class NoTask(BaseModel):
     id: int
     module: Literal["desktop"]
-    action: Literal['no_task']
+    action: Literal["no_task"]
     parameters: NoParams
+
 
 class Conversation(BaseModel):
     id: int
     module: Literal["desktop"]
-    action: Literal['conversation']
+    action: Literal["conversation"]
     parameters: NoParams
+
 
 class SetVolumeParams(BaseModel):
     level: int
@@ -105,7 +108,7 @@ class CreateFolder(BaseModel):
 
 
 class CreateFileParams(BaseModel):
-    path: str
+    foldername: str
     filename: str
     content: str
 

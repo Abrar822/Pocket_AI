@@ -1,7 +1,8 @@
 import sqlite3
 from pathlib import Path
 
-db_path = Path.home() / 'Pocket_AI' / 'memory.db'
+db_path = Path.home() / "Pocket_AI" / "memory.db"
+
 
 def db():
     db_path.parent.mkdir(exist_ok=True, parents=True)
@@ -16,6 +17,7 @@ def db():
     conn.execute(query)
     conn.commit()
     conn.close()
+
 
 def get_connection():
     try:

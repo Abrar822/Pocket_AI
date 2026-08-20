@@ -35,7 +35,7 @@ class DesktopModule:
             "rename_file_folder": self.file.execute,
             "close_file": self.file.execute,
             "no_task": self.no_task,
-            "conversation": self.conversation
+            "conversation": self.conversation,
         }
 
     def no_task(self, task):

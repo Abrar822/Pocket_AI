@@ -21,6 +21,7 @@ from contextlib import asynccontextmanager
 from .core.TaskRouter import TaskRouter
 from .pocket_ai_modules.text_to_speech_module.Piper_TTS import tts
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     db()
@@ -28,13 +29,14 @@ async def lifespan(app: FastAPI):
     app.state.speaker = tts.TextToSpeechModule()
     yield
 
+
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
     allow_credentials=True,
-    allow_methods=["*"],    
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 

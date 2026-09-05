@@ -6,13 +6,6 @@ class NoParams(BaseModel):
     pass
 
 
-class NoTask(BaseModel):
-    id: int
-    module: Literal["desktop"]
-    action: Literal["no_task"]
-    parameters: NoParams
-
-
 class Conversation(BaseModel):
     id: int
     module: Literal["desktop"]
@@ -77,27 +70,16 @@ class Hibernate(BaseModel):
     parameters: NoParams
 
 
-class TakeScreenshotWithoutPath(BaseModel):
+class TakeScreenshot(BaseModel):
     id: int
     module: Literal["desktop"]
-    action: Literal["take_screenshot_without_path"]
+    action: Literal["take_screenshot"]
     parameters: NoParams
 
 
-class TakeScreenshotWithPathParams(BaseModel):
-    path: str
-
-
-class TakeScreenshotWithPath(BaseModel):
-    id: int
-    module: Literal["desktop"]
-    action: Literal["take_screenshot_with_path"]
-    parameters: TakeScreenshotWithPathParams
-
-
 class CreateFolderParams(BaseModel):
-    path: str
-    foldername: str
+    destination_foldername: str
+    folder_to_be_created_name: str
 
 
 class CreateFolder(BaseModel):
@@ -120,42 +102,82 @@ class CreateFile(BaseModel):
     parameters: CreateFileParams
 
 
-class OpenFileFolderParams(BaseModel):
-    path: str
+class OpenFileParams(BaseModel):
+    filename: str
+    foldername: str
 
 
-class OpenFileFolder(BaseModel):
+class OpenFile(BaseModel):
     id: int
     module: Literal["desktop"]
-    action: Literal["open_file_folder"]
-    parameters: OpenFileFolderParams
+    action: Literal["open_file"]
+    parameters: OpenFileParams
 
 
-class DeleteFileFolderParams(BaseModel):
-    path: str
+class OpenFolderParams(BaseModel):
+    parent_foldername: str
+    foldername: str
 
 
-class DeleteFileFolder(BaseModel):
+class OpenFolder(BaseModel):
     id: int
     module: Literal["desktop"]
-    action: Literal["delete_file_folder"]
-    parameters: DeleteFileFolderParams
+    action: Literal["open_folder"]
+    parameters: OpenFolderParams
 
 
-class RenameFileFolderParams(BaseModel):
-    path: str
-    new_name: str
+class DeleteFileParams(BaseModel):
+    filename: str
+    foldername: str
 
 
-class RenameFileFolder(BaseModel):
+class DeleteFile(BaseModel):
     id: int
     module: Literal["desktop"]
-    action: Literal["rename_file_folder"]
-    parameters: RenameFileFolderParams
+    action: Literal["delete_file"]
+    parameters: DeleteFileParams
+
+
+class DeleteFolderParams(BaseModel):
+    parent_foldername: str
+    folder_to_be_deleted_name: str
+
+
+class DeleteFolder(BaseModel):
+    id: int
+    module: Literal["desktop"]
+    action: Literal["delete_folder"]
+    parameters: DeleteFolderParams
+
+
+class RenameFileParams(BaseModel):
+    foldername: str
+    filename: str
+    new_filename: str
+
+
+class RenameFile(BaseModel):
+    id: int
+    module: Literal["desktop"]
+    action: Literal["rename_file"]
+    parameters: RenameFileParams
+
+
+class RenameFolderParams(BaseModel):
+    old_foldername: str
+    new_foldername: str
+    parent_foldername: str
+
+
+class RenameFolder(BaseModel):
+    id: int
+    module: Literal["desktop"]
+    action: Literal["rename_folder"]
+    parameters: RenameFolderParams
 
 
 class CloseFileParams(BaseModel):
-    name: str
+    filename: str
 
 
 class CloseFile(BaseModel):
@@ -173,15 +195,16 @@ DeskTopTask = Annotated[
     | Lock
     | Sleep
     | Hibernate
-    | TakeScreenshotWithoutPath
-    | TakeScreenshotWithPath
+    | TakeScreenshot
     | CreateFolder
     | CreateFile
-    | OpenFileFolder
-    | DeleteFileFolder
-    | RenameFileFolder
+    | OpenFile
+    | OpenFolder
+    | DeleteFile
+    | DeleteFolder
+    | RenameFile
+    | RenameFolder
     | CloseFile
-    | Conversation
-    | NoTask,
+    | Conversation,
     Field(discriminator="action"),
 ]

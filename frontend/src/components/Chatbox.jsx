@@ -13,7 +13,7 @@ export default function Chatbox({ setState }) {
   const [messages, setMessages] = useState([
     {
       type: "bot-message",
-      message: "Hi, I am Pocket AI. How can I help you?",
+      message: "Hi, I am Friday. How can I help you?",
     },
   ]);
   const [prompt, setPrompt] = useState("");
@@ -80,9 +80,9 @@ export default function Chatbox({ setState }) {
           </div>
           <div className="chat-section" ref={chatSectionRef}>
             {messages.map((msg, idx) => (
-              <div className={msg.type} key="idx">
+              <pre className={msg.type} key={idx}>
                 {msg.message}
-              </div>
+              </pre>
             ))}
             {loading && (
               <div className="loading bot-message" key={12345}>
@@ -100,7 +100,7 @@ export default function Chatbox({ setState }) {
               </button>
               <textarea
                 className="input-bar"
-                placeholder="Ask Pocket AI.."
+                placeholder="Ask Friday.."
                 ref={textareaRef}
                 rows={1}
                 onKeyDown={async (e) => {
@@ -115,13 +115,17 @@ export default function Chatbox({ setState }) {
                     chatInputRef.current.style.height = `auto`;
                     setLoading(true);
                     setState("Working on it");
-                    let response = await fastapiConnect(prompt);
-                    setMessages((prev) => [
-                      ...prev,
-                      { type: "bot-message", message: response.response },
-                    ]);
-                    setLoading(false);
-                    setState("Listening");
+                    try {
+                      let response = await fastapiConnect(prompt);
+                      let newMessages = response.response.map((msg) => ({
+                        type: "bot-message",
+                        message: msg,
+                      }));
+                      setMessages((prev) => [...prev, ...newMessages]);
+                    } finally {
+                      setLoading(false);
+                      setState("Listening");
+                    }
                   }
                 }}
                 onChange={(e) => {
@@ -153,13 +157,17 @@ export default function Chatbox({ setState }) {
                   chatInputRef.current.style.height = `auto`;
                   setLoading(true);
                   setState("Working on it");
-                  let response = await fastapiConnect(prompt);
-                  setMessages((prev) => [
-                    ...prev,
-                    { type: "bot-message", message: response.response },
-                  ]);
-                  setLoading(false);
-                  setState("Listening");
+                  try {
+                    let response = await fastapiConnect(prompt);
+                    let newMessages = response.response.map((msg) => ({
+                      type: "bot-message",
+                      message: msg,
+                    }));
+                    setMessages((prev) => [...prev, ...newMessages]);
+                  } finally {
+                    setLoading(false);
+                    setState("Listening");
+                  }
                 }}
               >
                 <i className="ti ti-arrow-up"></i>

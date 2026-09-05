@@ -8,6 +8,7 @@ backend/.venv/
 backend/.env
 backend/core/llama_cpp/*
 backend/core/model/*
+backend/friday_modules/text_to_speech_module/Piper_TTS/voices/*
 
 __pycache__/
 *.pyc

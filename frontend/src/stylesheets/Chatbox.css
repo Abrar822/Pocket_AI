@@ -75,8 +75,7 @@
   height: calc(100% - 120px);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 5px;
+  gap: 2px;
   padding-top: 20px;
   overflow-y: auto;
 }
@@ -87,10 +86,12 @@
   color: var(--text-primary);
   margin: 5px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 7px 10px;
   max-width: 80%;
   align-self: flex-start;
   width: fit-content;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .user-message {
@@ -99,10 +100,12 @@
   color: var(--text-primary);
   margin: 5px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 7px 10px;
   max-width: 80%;
   align-self: flex-end;
   width: fit-content;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .chat-input {

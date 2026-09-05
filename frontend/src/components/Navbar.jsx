@@ -1,5 +1,5 @@
 import "../stylesheets/Navbar.css";
-import PocketAILogo from "./PocketAILogo";
+import FridayLogo from "./Friday";
 
 export default function Navbar({ menuBtnRef }) {
   return (
@@ -16,8 +16,8 @@ export default function Navbar({ menuBtnRef }) {
           </div>
 
           <div className="logo">
-            <PocketAILogo />
-            <span style={{'fontWeight': '800'}}>Pocket</span> <span style={{'color': '#4FD8FF', 'fontWeight': '800'}}>AI</span>
+            <FridayLogo />
+            <span style={{'fontWeight': '800'}}>Friday</span> <span style={{'color': '#4FD8FF', 'fontWeight': '800'}}>AI</span>
           </div>
         </nav>
       </div>

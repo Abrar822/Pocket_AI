@@ -14,6 +14,10 @@ def route_task(prompt: str):
             "temperature": 0.2,
             "max_tokens": 2048,
         },
+        timeout=60,
     )
     route = response.json()
-    return json.loads(route['choices'][0]['message']['content'])
+    print(route)
+    data = route["choices"][0]["message"]["content"]
+    data = json.loads(data)
+    return data

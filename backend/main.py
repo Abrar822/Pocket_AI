@@ -1,5 +1,7 @@
 # Run Qwen:=> .\backend\core\llama_cpp\llama-server.exe -m ".\backend\core\model\qwen2.5-1.5b-instruct-q4_k_m.gguf" -c 4096
 
+# new: .\backend\core\llama_cpp\llama-server.exe -m ".\backend\core\model\Qwen3-1.7B-Q4_K_M.gguf" -c 4096
+
 # data = {
 #     "response": "Email is being generated, pls dont press any key sir",
 #     "tasks": [
@@ -15,18 +17,25 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .core.llm_prompt_endpoint import llm_prompt_router
-from .pocket_ai_modules.persistent_memory.memory_endpoints import memory_endpoints
-from .pocket_ai_modules.persistent_memory.db import db
+from .friday_modules.persistent_memory.memory_endpoints import memory_endpoints
+from .friday_modules.persistent_memory.db import db, get_conn_obj
 from contextlib import asynccontextmanager
 from .core.TaskRouter import TaskRouter
-from .pocket_ai_modules.text_to_speech_module.Piper_TTS import tts
+from .friday_modules.text_to_speech_module.Piper_TTS import tts
+from .friday_modules.persistent_memory.memory_operations import fetch_locations
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     db()
+
+    conn = get_conn_obj()
+    app.state.locations = fetch_locations(conn)
+    conn.close()
+
     app.state.ai = TaskRouter()
     app.state.speaker = tts.TextToSpeechModule()
+    app.state.speaker.tts('Hi, I am Friday. How can I help you')
     yield
 
 

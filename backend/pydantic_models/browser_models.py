@@ -50,5 +50,6 @@ class SummarizeWebsite(BaseModel):
 
 
 BrowserTask = Annotated[
-    OpenWebsite | SummarizeWebsite | SearchSpecificWebsite, Field(discriminator="action")
+    OpenWebsite | SummarizeWebsite | SearchSpecificWebsite,
+    Field(discriminator="action"),
 ]

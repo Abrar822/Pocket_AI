@@ -9,6 +9,8 @@ llm_prompt_router = APIRouter()
 # Endpoint to generate the response from llm after receiving the prompt
 @llm_prompt_router.post("/prompt")
 def generate_response(request: LLMRequestModel, req: Request):
+    data = None
+    result = None
     try:
         data = route_task(request.prompt)
         print("Data returned by llm", data)
@@ -17,11 +19,19 @@ def generate_response(request: LLMRequestModel, req: Request):
 
         req.app.state.speaker.tts(data.response)
 
-        req.app.state.ai.execute(data.tasks)
+        result = req.app.state.ai.execute(data.tasks)
+        print("result", result)
 
-        return {"response": data.response}
+        for res in result:
+            req.app.state.speaker.tts(res)
+
+        return {"response": [data.response] + result}
 
     except Exception as err:
-        req.app.state.speaker.tts("Sorry I cannot help with that")
+        req.app.state.speaker.tts("Sorry, I couldn't process that request.")
         print(str(err))
-        return {"response": "Sorry I cannot help with that"}
+        return {"response": ["Sorry, I couldn't process that request."]}
+    finally:
+        print("Data returned by llm", data)
+        print("result", result)
+
